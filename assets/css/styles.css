@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ================ Common ============ */
+
+.main-content {
+    width: 1170px;
+    max-width: calc(100% - 48px);
+    /* dòng trên để cho khi thu nhỏ trang web thì không bị xuất hiện thanh cuộn ngang */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 118px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 50px;
+    border-radius: 24.5px;
+    background: #171100;
+    padding: 0 16px;
+}
+
+/* ================ Header ============ */
+.header {
+    background-color: #fffcf4;
+}
+
+.header .fixed {
+    position: sticky;
+    top: -28px;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    padding: 36px 0 8px;
+}
+
+.nav {
+    margin-left: auto;
+}
+
+.nav ul {
+    display: flex;
+    margin-right: 70px;
+}
+
+.nav a {
+    position: relative;
+    color: #5f5b53;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.75;
+    padding: 8px 21px;
+}
+
+.nav a:hover,
+.nav li.active a {
+    /* Lưu ý cách tác động vào thẻ a có class */
+    color: #171100;
+    text-align: center;
+    font-size: 1.6rem;
+    /* font-weight: 600; */
+    /* thay thế bằng cái ở dưới để khi hover vào mấy nút xung quanh không bị di chuyển */
+    text-shadow: 1px 0 0 currentColor;
+    line-height: 1.75;
+}
+/* Cái ở trên có ý nghĩa là khi di chuột vào thẻ nào thì thẻ đó sẽ được in đậm */
+
+.nav li.active a::after {
+    position: absolute;
+    left: 21px;
+    bottom: 6px;
+    content: "";
+    display: block;
+    width: 12px;
+    height: 2px;
+    border-radius: 1px;
+    background: #171100;
+}
+/* do cái display của thằng a mặc định là inline nên phải đổi về block hoặc inline-block */
+/* để canh chỉnh cái hình thì để position của thẻ a là relative còn của cái after là absolute rồi căn sao cho ngay là được */
+
+.sign-up-btn {
+    min-width: 144px;
+}
