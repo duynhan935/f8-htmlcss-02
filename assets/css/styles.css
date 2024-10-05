@@ -18,6 +18,51 @@ body {
 
 /* ================ Common ============ */
 
+.break-all {
+    word-break: break-all;
+}
+/* cái này dùng để xử lý trường hợp người dùng nhập ko có dấu cách để nó tự biết mà xuống hàng */
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, 1);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp2 {
+    -webkit-line-clamp: var(--line-clamp, 2);
+}
+/* Cái này để giới hạn nội dung cho các dòng, khi vượt qua số hàng quy định thì sẽ xuất hiện dấu 3 chấm */
+
+.desc {
+    color: #5f5b53;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.heading {
+    color: #171100;
+    font-family: var(--font-heading);
+    line-height: 1.18;
+    letter-spacing: -1.16px;
+    font-weight: 700;
+}
+
+.heading.lv1 {
+    font-size: 5.8rem;
+}
+
+.heading.lv2 {
+    font-size: 3.8rem;
+}
+
+:root {
+    --font-heading: Sen, san-serif;
+    --background-color: #ffb900;
+}
+
 .main-content {
     width: 1170px;
     max-width: calc(100% - 48px);
@@ -33,14 +78,18 @@ a {
 .btn {
     display: inline-block;
     min-width: 118px;
-    color: #fff;
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 600;
-    line-height: 50px;
-    border-radius: 24.5px;
-    background: #171100;
     padding: 0 16px;
+    line-height: 50px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #ffffff;
+    background: #171100;
+    border-radius: 999px;
+}
+
+.btn:hover {
+    opacity: 0.9;
 }
 
 /* ================ Header ============ */
@@ -48,12 +97,14 @@ a {
     background-color: #fffcf4;
 }
 
-.header .fixed {
+.fixed {
     position: sticky;
     top: -28px;
+    z-index: 1;
+    /* z-index: 1; để cho mấy nội dung ở dưới không bị nhảy lên cái thanh neo */
 }
 
-.body {
+.header .body {
     display: flex;
     align-items: center;
     padding: 36px 0 8px;
@@ -65,7 +116,6 @@ a {
 
 .nav ul {
     display: flex;
-    margin-right: 70px;
 }
 
 .nav a {
@@ -105,6 +155,589 @@ a {
 /* do cái display của thằng a mặc định là inline nên phải đổi về block hoặc inline-block */
 /* để canh chỉnh cái hình thì để position của thẻ a là relative còn của cái after là absolute rồi căn sao cho ngay là được */
 
+.action {
+    margin-left: 49px;
+}
+
 .sign-up-btn {
     min-width: 144px;
+}
+
+/* ================ Hero ============ */
+
+.hero {
+    padding-top: 56px;
+    background: #fffcf4;
+}
+
+.hero .body {
+    display: flex;
+}
+
+/* Hero left */
+
+.hero .media-block {
+    position: relative;
+    width: 48%;
+}
+
+.hero .media-block > img {
+    width: 470px;
+    height: 685px;
+    border-radius: 20px;
+    object-fit: cover;
+    display: block;
+    /* do img là thẻ inline nên ở dưới nó sẽ dư ra 1 khoảng nên phải để lại là block, xem sửa ở phần Hero 2 */
+}
+
+.hero .media-block .hero-summary {
+    position: absolute;
+    right: 0;
+    bottom: 48px;
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.05);
+    width: 270px;
+}
+
+.hero .item + .item {
+    margin-top: 22px;
+}
+/* lấy từ thằng item thứ 2 trở đi */
+
+.hero .item {
+    display: flex;
+    align-items: center;
+}
+
+.hero .hero-summary .info {
+    margin-left: 16px;
+}
+
+.hero .hero-summary .info .label {
+    color: #5f5b53;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.hero .hero-summary .info .title {
+    color: #171100;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Hero right */
+
+.hero .content-block {
+    width: 52%;
+    padding: 64px 0 0 130px;
+}
+
+.hero .content-block .desc {
+    margin-top: 22px;
+}
+
+.hero .content-block .cta-group {
+    display: flex;
+    align-items: center;
+    margin: 38px 0 48px;
+}
+
+.hero .content-block .hero-cta {
+    min-width: 180px;
+    line-height: 64px;
+    background: var(--background-color);
+}
+
+.hero .content-block .watch-video {
+    border: none;
+    /* bỏ cái viền vì thẻ button nó sẽ có sẵn cái viền */
+    background-color: #fffcf4;
+    margin-left: 28px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.hero .content-block .icon {
+    margin-right: 14px;
+}
+
+.hero .content-block span {
+    color: #171100;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.hero .stats {
+    margin: 8px 0 0 -28px;
+}
+/* do ở dưới bị dư 1 cái padding left nên thẻ cha của nó phải căn chỉnh lại */
+
+.hero .content-block .stats strong {
+    padding: 0 8px 0 28px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 4.4rem;
+    line-height: 1.23;
+    color: #171100;
+}
+
+/* ================ Popular ============ */
+.popular {
+    margin-top: 135px;
+    padding: 65px 0;
+}
+
+/* Popular Top */
+
+.popular .popular-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popular .popular-top .desc {
+    width: 458px;
+    margin-top: 16px;
+}
+
+.popular .popular-top .icon {
+    cursor: pointer;
+}
+
+/* Course List */
+
+.popular .list {
+    margin-top: 55px;
+    display: flex;
+    gap: 30px;
+}
+
+.popular .item {
+    flex: 1;
+    border-radius: 12px;
+    border: 1px solid #e2dfda;
+}
+
+.popular .item:hover {
+    border-color: transparent;
+    box-shadow: 0px 18px 36px 0px rgba(0, 0, 0, 0.05);
+}
+/* khi hover vào thì nếu để border none thì nó sẽ bị thay đổi kích thước của các phàn tử khác nên ở đây ta chỉ đổi màu thôi */
+
+.popular .thumb {
+    width: calc(100%+2px);
+    /* mở video popular 2 lên coi */
+    height: 278px;
+    border-radius: 12px 12px 0px 0px;
+    object-fit: cover;
+    margin: -1px;
+    /* Margin âm để cho cái border không bị hiện ngoài cái ảnh */
+}
+
+.popular .info {
+    padding: 16px 22px 22px;
+}
+
+.popular .rating,
+.popular .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popular .title,
+.popular .title a {
+    padding-right: 6px;
+    color: #171100;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.6;
+    background: #fff;
+}
+
+.popular .value {
+    margin-left: 6px;
+    color: #fea31b;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.popular .desc {
+    font-size: 1.4rem;
+    width: 326px;
+    margin-top: 6px;
+}
+
+.popular .foot {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popular .btn {
+    border-radius: 25px;
+    background: #171100;
+    width: 118px;
+}
+
+.popular .btn:hover {
+    background: var(--background-color);
+}
+
+/* ================ Feefback ============ */
+
+.feedback {
+    background: #2e2100;
+    margin-top: 135px;
+    padding: 96px 0;
+}
+
+.feedback-list {
+    display: flex;
+    overflow: hidden;
+    /* giúp khi thẻ con quá kích thước thẻ cha thì sẽ ẩn nó đi */
+}
+
+.feedback .feedback-item {
+    display: flex;
+    flex-shrink: 0;
+    /* cái flex-shrink giúp cho các thành phàn con không bị co lại khi sử dụng display:flex */
+    width: 100%;
+}
+
+.feedback .info {
+    width: 12%;
+}
+
+.feedback .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.feedback .title {
+    color: #f7f7f7;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-top: 18px;
+}
+
+.feedback .desc {
+    color: #bfbcb2;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 4px;
+    min-width: 159px;
+}
+
+.feedback .dots {
+    display: flex;
+    margin-top: 28px;
+}
+
+.feedback .dot {
+    margin-right: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #634700;
+    cursor: pointer;
+}
+
+.feedback .dot.active {
+    background: var(--background-color);
+    cursor: default;
+}
+
+.feedback-item .content {
+    width: 66%;
+    margin-left: auto;
+}
+
+.feedback blockquote {
+    margin-left: 30px;
+    color: #fff;
+    font-size: 2.6rem;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* ================ Features ============ */
+/* Features 1 */
+.features {
+    margin-top: 135px;
+    padding: 65px 0;
+}
+
+.features .body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.features .images {
+    display: flex;
+    gap: 0 30px;
+}
+
+.features .images img {
+    width: 270px;
+    height: 404px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.features .images .img1 {
+    margin-top: 34px;
+}
+
+.features .content {
+    width: 41%;
+    /* căn giữa nội dung */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.features .content .desc {
+    margin-top: 16px;
+    font-size: 1.6rem;
+    line-height: 1.75;
+}
+
+.features .content .btn {
+    margin-top: 32px;
+    background: var(--background-color);
+    border-radius: 26px;
+    width: 137px;
+}
+
+/* Features 2 */
+
+.features-2 {
+    margin-top: 70px;
+}
+
+.features-2 .body {
+    flex-direction: row-reverse;
+}
+
+.features-2 .content {
+    width: 49%;
+}
+
+.features-2 .images {
+    margin-left: 130px;
+}
+
+.features-2 .images img {
+    width: 470px;
+    height: 440px;
+    border-radius: 20px;
+}
+
+/* ================ Blog ============ */
+
+.blog {
+    margin-top: 135px;
+    background: #fffcf4;
+    padding: 96px 0;
+}
+
+.blog-top {
+    text-align: center;
+}
+
+.blog-top .desc {
+    margin: 16px auto auto;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    width: 448px;
+}
+
+.blog-list {
+    margin-top: 55px;
+    margin-bottom: 38px;
+    display: flex;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.blog-list .item {
+    width: calc(33.33% - 20px);
+    /* tính luôn mấy khoảng giữa mấy cái hình thì sẽ ra 60px chia 3 ra là 20px nên mỗi thằng phải giảm 20px */
+    border-radius: 16px;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.blog-list .item:hover {
+    box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.05);
+}
+
+.blog-list .thumb {
+    width: 100%;
+    height: 250px;
+    border-radius: 16px 16px 0px 0px;
+    object-fit: cover;
+}
+
+.blog-list .info {
+    padding: 20px 20px 28px;
+}
+
+.blog-list .date {
+    position: relative;
+    color: #5f5b53;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    display: inline-flex;
+    align-items: center;
+}
+
+.blog-list .date::before {
+    content: "";
+    /* để có thể set dài rộng thì phải chỉnh lại display: inline-block */
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    margin-right: 4px;
+}
+
+.blog-list .date::after {
+    position: absolute;
+    left: 0;
+    right: -27px;
+    bottom: 0;
+    content: "";
+    display: inline-block;
+    width: 160px;
+    height: 1px;
+    border-radius: 0.5px;
+    background: #e2dfda;
+}
+
+.blog-list .title a {
+    display: inline-block;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: #171100;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.75;
+}
+
+.blog-list .btn {
+    font-size: 1.4rem;
+}
+
+.blog-list .btn:hover {
+    cursor: pointer;
+    background: var(--background-color);
+}
+
+.blog .dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.blog .dot {
+    width: 6px;
+    height: 6px;
+    background: #171100;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.blog .dot.active {
+    cursor: default;
+    background: var(--background-color);
+}
+
+/* ================ Footer ============ */
+
+.footer {
+    width: 100%;
+    height: 428px;
+    background: #2e2100;
+    padding: 96px 135px 0;
+}
+
+.footer .row {
+    display: flex;
+    padding-bottom: 38px;
+    border-bottom: 1px solid #59554b;
+}
+
+.footer .column {
+    width: 21.6%;
+}
+
+.footer .column:nth-child(1) {
+    width: 35%;
+    margin-right: 145px;
+}
+
+.footer .desc {
+    font-size: 1.4rem;
+    color: #bfbcb2;
+    line-height: 1.8;
+    margin: 18px 0;
+    max-width: 267px;
+}
+
+.footer .title {
+    border-bottom: 1px solid #59554b;
+    padding: 0 48px 14px 0;
+    display: inline-block;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.75;
+}
+
+.footer .list {
+    margin-top: 28px;
+}
+
+.footer .list a {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #bfbcb2;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.85;
+}
+
+.footer .list li:last-child a {
+    margin-bottom: 0;
+}
+
+.footer .list strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.copyright {
+    margin: 28px 0;
+}
+
+.copyright p {
+    color: #807d74;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.85;
 }
